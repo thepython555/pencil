@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ username }} - Pencil</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .scrolling-container {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .scrolling-container .card {
+            display: inline-block;
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        .card-img-top {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card-title {
+            white-space: nowrap; /* Prevents the text from wrapping to the next line */
+            overflow: hidden; /* Hides the overflowing content */
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Pencil</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">Search</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1><img src="{{ user.icon_url }}">{{ username }}</h1>
+        <p>Made in {{ user.country }}&trade;</p>
+        <h3>Bio</h3>
+        <p>{{ user.about_me }}</p>
+        <h3>What I'm working on</h3>
+        <p>{{ user.wiwo }}</p>
+        <div class="row mt-4">
+            <div class="col">
+                <h2>Projects</h2>
+                <div class="scrolling-container">
+                    {% for project in users_projects %}
+                    <a href="/projects/{{ project.id }}">
+                        <div class="card">
+                            <img src="{{ project.thumbnail_url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ project.title }}</h6>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <h2>Favorites</h2>
+                <div class="scrolling-container">
+                    {% for project in fav_projects %}
+                    <a href="/projects/{{ project.id }}">
+                        <div class="card">
+                            <img src="{{ project.thumbnail_url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ project.title }}</h6>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <h2>Following</h2>
+                <div class="scrolling-container">
+                    {% for user in following %}
+                    <a href="/users/{{ user.username }}">
+                        <div class="card">
+                            <img src="{{ user.icon_url }}" class="card-img-top" alt="..." style="width:256px;height:256px">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ user.username }}</h6>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <h2>Followers</h2>
+                <div class="scrolling-container">
+                    {% for user in followers %}
+                    <a href="/users/{{ user.username }}">
+                        <div class="card">
+                            <img src="{{ user.icon_url }}" class="card-img-top" alt="..." style="width:256px;height:256px">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ user.username }}</h6>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div><br>
+        <h3>Profile comments</h3>
+        {% for comment in comments %}
+        <h4>{{ comment["User"] }}</h4>
+        <p>{{ comment["Content"] }}</p>
+        {% for reply in comment["Replies"] %}
+        <h5>&nbsp;&nbsp;{{ reply["User"] }}</h5>
+        <p>&nbsp;&nbsp;{{ reply["Content"] }}</p>
+        {% endfor %}
+        {% endfor %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies (Popper.js and jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
