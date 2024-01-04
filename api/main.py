@@ -52,7 +52,8 @@ def getRandomProject():
 
 @app.route("/")
 def index():
-    return render_template("index.html", featured_projects=scratch3.featured_projects(), recent_projects=scratch3.newest_projects(), random_projects=getRandomProjects(3))
+    randomproj = getRandomProject()
+    return render_template("index.html", featured_projects=scratch3.featured_projects(), recent_projects=scratch3.newest_projects(), random_projects=randomproj)
 
 @app.route("/projects/<id>")
 def project(id):

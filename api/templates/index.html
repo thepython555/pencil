@@ -98,16 +98,14 @@
             <div class="col">
                 <h2>Random project</h2>
                 <div class="scrolling-container">
-                    {% for project in random_projects %}
-                    <a href="/projects/{{ project.id }}">
+                    <a href="/projects/{{ randomproj.id }}">
                         <div class="card">
-                            <img src="{{ project.thumbnail_url }}" class="card-img-top" alt="...">
+                            <img src="{{ randomproj.thumbnail_url }}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h6 class="card-title">{{ project.title }}</h6>
+                                <h6 class="card-title">{{ randomproj.title }}</h6>
                             </div>
                         </div>
                     </a>
-                    {% endfor %}
                 </div>
             </div>
         </div>
