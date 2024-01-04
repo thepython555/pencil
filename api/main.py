@@ -43,16 +43,12 @@ def getRandomProject():
             urlrandom = f"https://api.scratch.mit.edu/projects/{idrandom}"
             if requests.get(urlrandom).text != notfoundtext:
                 running = False
-                return idrandom
+                return scratch3.get_project(idrandom)
     except Exception:
         return 0
 
 
 
-def getRandomProjectzz():
-    arr = []
-    arr.append(scratch3.get_project(getRandomProject()))
-    return arr
 
 @app.route("/")
 def index():
