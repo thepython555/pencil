@@ -43,7 +43,7 @@ def getRandomProject():
             urlrandom = f"https://api.scratch.mit.edu/projects/{idrandom}"
             if requests.get(urlrandom).text != notfoundtext:
                 running = False
-                return scratch3.get_project(idrandom)
+                return scratch3.get_project(str(idrandom))
     except Exception:
         return 0
 
