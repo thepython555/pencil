@@ -50,8 +50,7 @@ def getRandomProject():
 
 def getRandomProjectzz():
     arr = []
-    for item in getRandomProjects(1):
-        arr.append(scratch3.get_project(item))
+    arr.append(scratch3.get_project(getRandomProject()))
     return arr
 
 @app.route("/")
