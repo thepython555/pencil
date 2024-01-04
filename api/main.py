@@ -42,6 +42,7 @@ def getRandomProject():
             idrandom = random.randint(0,projectcount)
             urlrandom = f"https://api.scratch.mit.edu/projects/{idrandom}"
             if requests.get(urlrandom).text != notfoundtext:
+                running = False
                 return idrandom
     except Exception:
         return 0
@@ -55,7 +56,7 @@ def getRandomProjectzz():
 
 @app.route("/")
 def index():
-    return render_template("index.html", featured_projects=scratch3.featured_projects(), recent_projects=scratch3.newest_projects(), random_projects=getRandomProjectzz())
+    return render_template("index.html", featured_projects=scratch3.featured_projects(), recent_projects=scratch3.newest_projects(), random_projects=getRandomProjects(3))
 
 @app.route("/projects/<id>")
 def project(id):
