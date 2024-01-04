@@ -48,7 +48,7 @@ def getRandomProject():
 
 
 
-def getRandomProjects():
+def getRandomProjectzz():
     arr = []
     for item in getRandomProjects(1):
         arr.append(scratch3.get_project(item))
@@ -56,7 +56,7 @@ def getRandomProjects():
 
 @app.route("/")
 def index():
-    return render_template("index.html", featured_projects=scratch3.featured_projects(), recent_projects=scratch3.newest_projects(), random_projects=getRandomProjects())
+    return render_template("index.html", featured_projects=scratch3.featured_projects(), recent_projects=scratch3.newest_projects(), random_projects=getRandomProjectzz())
 
 @app.route("/projects/<id>")
 def project(id):
